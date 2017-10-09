@@ -27,7 +27,16 @@ object HomePage {
                 ^.cls := "mr2",
                 ^.tpe := "checkbox",
                 ^.id := s"task-$id",
-                ^.checked := done
+                ^.checked := done,
+                ^.onChange ==> { (e: ReactEventFromInput) =>
+                  e.extract(_.target.checked) { checked =>
+                    val index = state.tasks.indexWhere(_._1 == id)
+                    Callback.when(index >= 0) {
+                      val tasks = state.tasks.updated(index, state.tasks(index).copy(_3 = checked))
+                      scope.modState(_.copy(tasks = tasks))
+                    }
+                  }
+                }
               ),
               <.label(
                 ^.cls := "lh-copy",
