@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Todo list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.8.1/css/tachyons.min.css"/>
 </head>
-<body>
-<div id="root"></div>
+<body class="w-100 sans-serif">
+    <div class="mw6 center w-100 mt6">
+        <h2 class="fw2 bb pb2">Tasks</h2>
+        <div id="root"></div>
+    </div>
 <script src="./target/scala-2.12/todo-jsdeps.js"></script>
 <script src="./target/scala-2.12/todo-fastopt.js"></script>
 </body>
