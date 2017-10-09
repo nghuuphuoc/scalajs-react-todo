@@ -1,5 +1,7 @@
 package foo.bar.todo
 
+import scala.util.Random
+
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.component.Scala.Unmounted
 import japgolly.scalajs.react.vdom.TagOf
@@ -63,14 +65,14 @@ object HomePage {
   }
 
   private val component = ScalaComponent.builder[HomePage](ComponentName)
-    .initialState(
-      State(tasks = List(
-        (1, "Task 1", true),
-        (2, "Task 2", false),
-        (3, "Task 3", false),
-        (4, "Task 4", true)
-      ))
-    )
+    .initialState {
+      val random = new Random
+      val tasks = 1.to(10).map { index =>
+        val r = random.nextInt(100 + 1)
+        (index, s"Task $index", r % 2 == 0)
+      }.toList
+      State(tasks = tasks)
+    }
     .renderBackend[Backend]
     .build
 }
