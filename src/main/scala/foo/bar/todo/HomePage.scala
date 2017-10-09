@@ -16,36 +16,27 @@ object HomePage {
 
   private final val ComponentName = getClass.getSimpleName
 
-  private case class State(tasks: List[(Int, String, Boolean)])
+  private case class State(tasks: List[Task])
 
   private case class Backend(scope: BackendScope[HomePage, State]) {
+
+    private def onChangeStatus(task: Task, checked: Boolean) = {
+      scope.modState { state =>
+        val index = state.tasks.indexWhere(_.id == task.id)
+        if (index == -1) {
+          state
+        } else {
+          val newTasks = state.tasks.updated(index, state.tasks(index).copy(done = checked))
+          state.copy(tasks = newTasks)
+        }
+      }
+    }
 
     def render(state: State): TagOf[Div] = {
       <.div(
         <.ul(^.cls := "list pl0 mb2",
-          state.tasks.toTagMod { case (id, title, done) =>
-            <.li(^.cls := "flex items-center mb2",
-              <.input(
-                ^.cls := "mr2",
-                ^.tpe := "checkbox",
-                ^.id := s"task-$id",
-                ^.checked := done,
-                ^.onChange ==> { (e: ReactEventFromInput) =>
-                  e.extract(_.target.checked) { checked =>
-                    val index = state.tasks.indexWhere(_._1 == id)
-                    Callback.when(index >= 0) {
-                      val tasks = state.tasks.updated(index, state.tasks(index).copy(_3 = checked))
-                      scope.modState(_.copy(tasks = tasks))
-                    }
-                  }
-                }
-              ),
-              <.label(
-                ^.cls := "lh-copy",
-                ^.htmlFor := s"task-$id",
-                title
-              )
-            )
+          state.tasks.toVdomArray { task =>
+            TaskItem(task, onChangeStatus)()
           }
         ),
 
@@ -69,7 +60,7 @@ object HomePage {
       val random = new Random
       val tasks = 1.to(10).map { index =>
         val r = random.nextInt(100 + 1)
-        (index, s"Task $index", r % 2 == 0)
+        Task(index, s"Task $index", r % 2 == 0)
       }.toList
       State(tasks = tasks)
     }
