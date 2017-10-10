@@ -8,7 +8,7 @@ import org.scalajs.dom.html.{Div, LI}
 
 final case class TaskItem(
   task: Task,
-  onChangeStatus: (Task, Boolean) => Callback
+  onChangeStatus: (Task, Boolean) => Callback = (_: Task, _: Boolean) => Callback.empty
 ) {
   def apply(): Unmounted[_, _, _] = TaskItem.component.withKey(s"${TaskItem.ComponentName}-task-${task.id}")(this)
 }
@@ -46,10 +46,6 @@ object TaskItem {
   private val component = ScalaComponent.builder[TaskItem](ComponentName)
     .stateless
     .renderBackend[Backend]
-    .shouldComponentUpdate { scope =>
-      CallbackTo {
-        scope.currentProps.task.done != scope.nextProps.task.done
-      }
-    }
+    .shouldComponentUpdateConst(false)
     .build
 }

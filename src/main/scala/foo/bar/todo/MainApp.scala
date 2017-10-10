@@ -6,8 +6,7 @@ import org.scalajs.dom
 object MainApp {
   def main(args: Array[String]): Unit = {
     val container = dom.document.getElementById("root")
-    dom.console.info("Router logging is enabled. Enjoy!")
-    val router = Router(AppRouter.baseUrl, AppRouter.config.logToConsole)
+    val router = Router(AppRouter.baseUrl, AppRouter.config)
     router().renderIntoDOM(container)
   }
 }

@@ -6,20 +6,18 @@ import org.scalajs.dom
 
 object AppRouter {
 
-  sealed trait AppPage
-  case object Home extends AppPage
-
-  val config = RouterConfigDsl[AppPage].buildConfig { dsl =>
+  val config = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
 
     (trimSlashes
-      | staticRoute(root, Home) ~> render(HomePage()())
+      | staticRoute(root, IndexPage) ~> renderR(router => Index(router)())
+      | staticRoute("#highlight", HighlightDemoPage) ~> render(HighlightDemo()())
       )
-      .notFound(redirectToPage(Home)(Redirect.Replace))
+      .notFound(redirectToPage(IndexPage)(Redirect.Replace))
       .renderWith(layout)
   }
 
-  def layout(c: RouterCtl[AppPage], r: Resolution[AppPage]) = {
+  def layout(c: RouterCtl[Page], r: Resolution[Page]) = {
     <.div(
       r.render()
     )
