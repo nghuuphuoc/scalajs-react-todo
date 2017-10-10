@@ -15,7 +15,8 @@ object Index {
     <.ul(^.cls := "list pl0",
       <.li(^.cls := "mv2", props.router.link(HighlightDemoPage)("React DevTool Highlight")),
       <.li(^.cls := "mv2", props.router.link(DidUpdatePage)("Why Did You Update?")),
-      <.li(^.cls := "mv2", props.router.link(PerfPage)("React Perf Addon"))
+      <.li(^.cls := "mv2", props.router.link(PerfPage)("React Perf Addon")),
+      <.li(^.cls := "mv2", props.router.link(TimelinePage)("Use Chrome Performance Tab"))
     )
   }
 
