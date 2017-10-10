@@ -13,6 +13,7 @@ object AppRouter {
       | staticRoute(root, IndexPage) ~> renderR(router => Index(router)())
       | staticRoute("#highlight", HighlightDemoPage) ~> render(HighlightDemo()())
       | staticRoute("#highlight-v2", HighlightDemoPageV2) ~> render(HighlightDemoV2()())
+      | staticRoute("#highlight-v3", HighlightDemoPageV3) ~> render(HighlightDemoV3()())
       )
       .notFound(redirectToPage(IndexPage)(Redirect.Replace))
       .renderWith(layout)
