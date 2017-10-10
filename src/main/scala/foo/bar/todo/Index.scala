@@ -13,7 +13,8 @@ object Index {
 
   private def render(props: Index) = {
     <.ul(^.cls := "list pl0",
-      <.li(props.router.link(HighlightDemoPage)("React DevTool Highlight"))
+      <.li(props.router.link(HighlightDemoPage)("React DevTool Highlight")),
+      <.li(props.router.link(DidUpdatePage)("Why Did You Update?"))
     )
   }
 

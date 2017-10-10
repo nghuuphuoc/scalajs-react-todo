@@ -43,4 +43,3 @@ object HighlightTaskItemV3 {
     .renderBackend[Backend]
     .build
 }
-

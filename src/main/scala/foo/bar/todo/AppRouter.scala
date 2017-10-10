@@ -6,6 +6,8 @@ import org.scalajs.dom
 
 object AppRouter {
 
+  final val DidUpdateUrl = "#did-update"
+
   val config = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
 
@@ -14,6 +16,7 @@ object AppRouter {
       | staticRoute("#highlight", HighlightDemoPage) ~> render(HighlightDemo()())
       | staticRoute("#highlight-v2", HighlightDemoPageV2) ~> render(HighlightDemoV2()())
       | staticRoute("#highlight-v3", HighlightDemoPageV3) ~> render(HighlightDemoV3()())
+      | staticRoute(DidUpdateUrl, DidUpdatePage) ~> render(DidUpdate()())
       )
       .notFound(redirectToPage(IndexPage)(Redirect.Replace))
       .renderWith(layout)
