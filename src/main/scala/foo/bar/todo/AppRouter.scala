@@ -1,5 +1,8 @@
 package foo.bar.todo
 
+import foo.bar.todo.didupdate.{DidUpdate, DidUpdateV2}
+import foo.bar.todo.highlight.{HighlightDemo, HighlightDemoV2, HighlightDemoV3}
+import foo.bar.todo.perf.{PerfDemo, PerfDemoV2, PerfDemoV3}
 import japgolly.scalajs.react.extra.router.{BaseUrl, Redirect, Resolution, RouterConfigDsl, RouterCtl}
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom

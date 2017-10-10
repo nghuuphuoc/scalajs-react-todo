@@ -1,7 +1,8 @@
-package foo.bar.todo
+package foo.bar.todo.highlight
 
 import scala.util.Random
 
+import foo.bar.todo.Task
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.component.Scala.Unmounted
 import japgolly.scalajs.react.vdom.TagOf

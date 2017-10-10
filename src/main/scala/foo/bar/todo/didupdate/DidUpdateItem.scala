@@ -1,5 +1,6 @@
-package foo.bar.todo
+package foo.bar.todo.didupdate
 
+import foo.bar.todo.Task
 import foo.bar.todo.facades.WindowConsole
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.component.Scala.Unmounted
