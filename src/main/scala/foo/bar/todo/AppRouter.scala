@@ -9,8 +9,6 @@ import org.scalajs.dom
 
 object AppRouter {
 
-  final val DidUpdateUrl = "#did-update"
-
   val config = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
 
@@ -19,7 +17,7 @@ object AppRouter {
       | staticRoute("#highlight", HighlightDemoPage) ~> render(HighlightDemo()())
       | staticRoute("#highlight-v2", HighlightDemoPageV2) ~> render(HighlightDemoV2()())
       | staticRoute("#highlight-v3", HighlightDemoPageV3) ~> render(HighlightDemoV3()())
-      | staticRoute(DidUpdateUrl, DidUpdatePage) ~> render(DidUpdate()())
+      | staticRoute("#did-update", DidUpdatePage) ~> render(DidUpdate()())
       | staticRoute("#did-update-v2", DidUpdatePageV2) ~> render(DidUpdateV2()())
       | staticRoute("#perf", PerfPage) ~> render(PerfDemo()())
       | staticRoute("#perf-v2", PerfPageV2) ~> render(PerfDemoV2()())

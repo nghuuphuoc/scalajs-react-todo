@@ -28,10 +28,5 @@ jsDependencies ++= Seq(
     /         "react-dom-server.js"
     minified  "react-dom-server.min.js"
     dependsOn "react-dom.js"
-    commonJSName "ReactDOMServer",
-
-  ProvidedJS / "vendor/js/why-did-you-update/why-did-you-update-0.0.8.js"
-    minified "vendor/js/why-did-you-update/why-did-you-update-0.0.8.min.js"
-    dependsOn "react-with-addons.js"
-    dependsOn "react-dom.js"
+    commonJSName "ReactDOMServer"
 )
