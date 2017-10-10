@@ -20,6 +20,7 @@ object AppRouter {
       | staticRoute("#did-update-v2", DidUpdatePageV2) ~> render(DidUpdateV2()())
       | staticRoute("#perf", PerfPage) ~> render(PerfDemo()())
       | staticRoute("#perf-v2", PerfPageV2) ~> render(PerfDemoV2()())
+      | staticRoute("#perf-v3", PerfPageV3) ~> render(PerfDemoV3()())
       )
       .notFound(redirectToPage(IndexPage)(Redirect.Replace))
       .renderWith(layout)

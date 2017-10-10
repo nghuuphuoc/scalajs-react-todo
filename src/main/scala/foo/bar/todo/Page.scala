@@ -9,3 +9,4 @@ case object DidUpdatePage extends Page
 case object DidUpdatePageV2 extends Page
 case object PerfPage extends Page
 case object PerfPageV2 extends Page
+case object PerfPageV3 extends Page
