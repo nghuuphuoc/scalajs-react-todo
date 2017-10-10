@@ -22,16 +22,19 @@ object AppRouter {
       | staticRoute("#perf", PerfPage) ~> render(PerfDemo()())
       | staticRoute("#perf-v2", PerfPageV2) ~> render(PerfDemoV2()())
       | staticRoute("#perf-v3", PerfPageV3) ~> render(PerfDemoV3()())
-      | staticRoute("#timeline?react_perf", PerfPage) ~> render(PerfDemo()())
-      | staticRoute("#timeline-v2?react_perf", PerfPageV2) ~> render(PerfDemoV2()())
+      | staticRoute("#timeline?react_perf", TimelinePage) ~> render(PerfDemo()())
+      | staticRoute("#timeline-v2?react_perf", TimelinePageV2) ~> render(PerfDemoV2()())
       )
       .notFound(redirectToPage(IndexPage)(Redirect.Replace))
       .renderWith(layout)
   }
 
-  def layout(c: RouterCtl[Page], r: Resolution[Page]) = {
+  def layout(router: RouterCtl[Page], res: Resolution[Page]) = {
     <.div(
-      r.render()
+      <.div(^.cls := "bb",
+        Breadcrumb(router, res.page)()
+      ),
+      res.render()
     )
   }
 
