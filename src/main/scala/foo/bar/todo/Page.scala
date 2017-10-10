@@ -16,3 +16,4 @@ case object PerfPageV3 extends Page
 
 case object TimelinePage extends Page
 case object TimelinePageV2 extends Page
+case object TimelinePageV3 extends Page

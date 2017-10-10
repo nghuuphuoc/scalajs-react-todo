@@ -20,7 +20,7 @@ object Breadcrumb {
           <.span(^.cls := "pr2", "React DevTool Highlight: "),
           props.router.link(HighlightDemoPage)(^.cls := "pr2", "V1"),
           props.router.link(HighlightDemoPageV2)(^.cls := "pr2", "V2"),
-          props.router.link(HighlightDemoPageV3)("V3")
+          props.router.link(HighlightDemoPageV3)(^.cls := "pr2", "V3")
         )
 
       case DidUpdatePage | DidUpdatePageV2 =>
@@ -42,13 +42,14 @@ object Breadcrumb {
           props.router.link(PerfPageV3)(^.cls := "pr2", "V3")
         )
 
-      case TimelinePage | TimelinePageV2 =>
+      case TimelinePage | TimelinePageV2 | TimelinePageV3 =>
         <.div(^.cls := "flex items-center mv3",
           props.router.link(IndexPage)(^.cls := "pr2", "Demo"),
           <.span(^.cls := "pr2", " / "),
           <.span(^.cls := "pr2", "Use Chrome Performance Tab: "),
           props.router.link(TimelinePage)(^.cls := "pr2", "V1"),
-          props.router.link(TimelinePageV2)(^.cls := "pr2", "V2")
+          props.router.link(TimelinePageV2)(^.cls := "pr2", "V2"),
+          props.router.link(TimelinePageV3)(^.cls := "pr2", "V3")
         )
 
       case IndexPage =>

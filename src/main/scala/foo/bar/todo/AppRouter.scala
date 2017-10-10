@@ -24,6 +24,7 @@ object AppRouter {
       | staticRoute("#perf-v3", PerfPageV3) ~> render(PerfDemoV3()())
       | staticRoute("#timeline?react_perf", TimelinePage) ~> render(PerfDemo()())
       | staticRoute("#timeline-v2?react_perf", TimelinePageV2) ~> render(PerfDemoV2()())
+      | staticRoute("#timeline-v3?react_perf", TimelinePageV3) ~> render(PerfDemoV3()())
       )
       .notFound(redirectToPage(IndexPage)(Redirect.Replace))
       .renderWith(layout)
