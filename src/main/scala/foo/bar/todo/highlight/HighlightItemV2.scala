@@ -7,21 +7,21 @@ import japgolly.scalajs.react.vdom.TagOf
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.html.LI
 
-final case class HighlightTaskItemV2(
+final case class HighlightItemV2(
   task: Task,
   expanded: Boolean,
   onToggle: Task => Callback
 ) {
-  def apply(): Unmounted[_, _, _] = HighlightTaskItemV2.component.withKey(s"${HighlightTaskItemV2.ComponentName}-task-${task.id}")(this)
+  def apply(): Unmounted[_, _, _] = HighlightItemV2.component.withKey(s"${HighlightItemV2.ComponentName}-task-${task.id}")(this)
 }
 
-object HighlightTaskItemV2 {
+object HighlightItemV2 {
 
   private final val ComponentName = getClass.getSimpleName
 
-  private case class Backend(scope: BackendScope[HighlightTaskItemV2, _]) {
+  private case class Backend(scope: BackendScope[HighlightItemV2, _]) {
 
-    def render(props: HighlightTaskItemV2): TagOf[LI] = {
+    def render(props: HighlightItemV2): TagOf[LI] = {
       val task = props.task
 
       <.li(
@@ -40,7 +40,7 @@ object HighlightTaskItemV2 {
     }
   }
 
-  private val component = ScalaComponent.builder[HighlightTaskItemV2](ComponentName)
+  private val component = ScalaComponent.builder[HighlightItemV2](ComponentName)
     .stateless
     .renderBackend[Backend]
     .build

@@ -1,6 +1,6 @@
 package foo.bar.todo
 
-import foo.bar.todo.didupdate.{DidUpdate, DidUpdateV2}
+import foo.bar.todo.didupdate.{DidUpdateDemo, DidUpdateDemoV2}
 import foo.bar.todo.highlight.{HighlightDemo, HighlightDemoV2, HighlightDemoV3}
 import foo.bar.todo.perf.{PerfDemo, PerfDemoV2, PerfDemoV3}
 import japgolly.scalajs.react.extra.router.{BaseUrl, Redirect, Resolution, RouterConfigDsl, RouterCtl}
@@ -17,8 +17,8 @@ object AppRouter {
       | staticRoute("#highlight", HighlightDemoPage) ~> render(HighlightDemo()())
       | staticRoute("#highlight-v2", HighlightDemoPageV2) ~> render(HighlightDemoV2()())
       | staticRoute("#highlight-v3", HighlightDemoPageV3) ~> render(HighlightDemoV3()())
-      | staticRoute("#did-update", DidUpdatePage) ~> render(DidUpdate()())
-      | staticRoute("#did-update-v2", DidUpdatePageV2) ~> render(DidUpdateV2()())
+      | staticRoute("#did-update", DidUpdatePage) ~> render(DidUpdateDemo()())
+      | staticRoute("#did-update-v2", DidUpdatePageV2) ~> render(DidUpdateDemoV2()())
       | staticRoute("#perf", PerfPage) ~> render(PerfDemo()())
       | staticRoute("#perf-v2", PerfPageV2) ~> render(PerfDemoV2()())
       | staticRoute("#perf-v3", PerfPageV3) ~> render(PerfDemoV3()())

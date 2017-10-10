@@ -1,9 +1,7 @@
 package foo.bar.todo.perf
 
-import scala.util.Random
-
 import foo.bar.todo.facades.ReactPerf
-import foo.bar.todo.Task
+import foo.bar.todo.{Task, TaskUtils}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.component.Scala.Unmounted
 import japgolly.scalajs.react.vdom.TagOf
@@ -17,8 +15,6 @@ final case class PerfDemo() {
 object PerfDemo {
 
   private final val ComponentName = getClass.getSimpleName
-
-  private final val InitialNumberOfTasks = 1000
 
   private case class State(tasks: List[Task], newTask: String = "")
 
@@ -56,7 +52,7 @@ object PerfDemo {
 
         <.ul(^.cls := "list pl0 mv2",
           state.tasks.toVdomArray { task =>
-            PerfDemoItem(task)()
+            PerfItem(task)()
           }
         )
       )
@@ -65,15 +61,7 @@ object PerfDemo {
 
   private val component = ScalaComponent.builder[PerfDemo](ComponentName)
     .initialState {
-      val random = new Random
-      val tasks = 1.to(InitialNumberOfTasks).map { index =>
-        val done = random.nextInt(100) % 2 == 0
-
-        // Generate the task title
-        val title = 0.to(random.nextInt(10)).map(_ => s"Task $index").mkString(" ")
-        Task(index, title, done)
-      }.toList
-      State(tasks = tasks)
+      State(tasks = TaskUtils.generateTasks())
     }
     .renderBackend[Backend]
     .componentDidUpdate { _ =>
