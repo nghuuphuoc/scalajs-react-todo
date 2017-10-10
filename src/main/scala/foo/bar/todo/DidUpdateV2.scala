@@ -22,7 +22,7 @@ object DidUpdateV2 {
 
   private case class Backend(scope: BackendScope[DidUpdateV2, State]) {
 
-    private def onMarkDone(task: Task) = {
+    private def onChange(task: Task) = {
       scope.modState { state =>
         val index = state.tasks.indexWhere(_.id == task.id)
         if (index == -1) {
@@ -36,7 +36,7 @@ object DidUpdateV2 {
     def render(state: State): TagOf[UList] = {
       <.ul(^.cls := "list pl0 mv2",
         state.tasks.toVdomArray { task =>
-          DidUpdateItemV2(task, onMarkDone)()
+          DidUpdateItemV2(task, onChange)()
         }
       )
     }

@@ -9,7 +9,7 @@ import org.scalajs.dom.html.LI
 
 final case class DidUpdateItemV2(
   task: Task,
-  onMarkDone: Task => Callback
+  onChange: Task => Callback
 ) {
   def apply(): Unmounted[_, _, _] = DidUpdateItemV2.component.withKey(s"${DidUpdateItemV2.ComponentName}-task-${task.id}")(this)
 }
@@ -30,7 +30,7 @@ object DidUpdateItemV2 {
           ^.checked := task.done,
           ^.onChange ==> { (e: ReactEventFromInput) =>
             e.extract(_.target.checked) { checked =>
-              props.onMarkDone(props.task.copy(done = checked))
+              props.onChange(props.task.copy(done = checked))
             }
           }
         ),

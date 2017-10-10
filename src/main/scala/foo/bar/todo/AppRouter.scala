@@ -18,6 +18,8 @@ object AppRouter {
       | staticRoute("#highlight-v3", HighlightDemoPageV3) ~> render(HighlightDemoV3()())
       | staticRoute(DidUpdateUrl, DidUpdatePage) ~> render(DidUpdate()())
       | staticRoute("#did-update-v2", DidUpdatePageV2) ~> render(DidUpdateV2()())
+      | staticRoute("#perf", PerfPage) ~> render(PerfDemo()())
+      | staticRoute("#perf-v2", PerfPageV2) ~> render(PerfDemoV2()())
       )
       .notFound(redirectToPage(IndexPage)(Redirect.Replace))
       .renderWith(layout)
