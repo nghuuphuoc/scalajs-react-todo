@@ -24,9 +24,7 @@ object HighlightItemV2 {
     def render(props: HighlightItemV2): TagOf[LI] = {
       val task = props.task
 
-      <.li(
-        ^.cls := "flex items-center mb2",
-        ^.key := s"$ComponentName-task-${task.id}",
+      <.li(^.cls := "flex items-center mb2",
         <.span(^.cls := "mr1", s"#${task.id}: "),
         <.a(
           ^.classSet(
